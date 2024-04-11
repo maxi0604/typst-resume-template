@@ -6,19 +6,30 @@
   author: (
       firstname: "Aaaaaaa", 
       lastname: "Aaa",
-      email: "aaaaaaaaaa@aaaaa.aaa", 
+      email: "aa@aaaaa.aaa",
       phone: "(+1) 0000000000",
+      // Comment out as needed
       github: "aaaaaaaaa",
+      gitlab: "aaaaaaaaa",
       linkedin: "aaaaaaaa",
       positions: (
         "Aaaaaaaa Aaaaaaaa",
-        "Aaaa Aaaaa Aaaaaaaaa",
       )
   ),
   date: today.display("[month repr:long] [day], [year]")
 )
 
 #resume_section("Education")
+
+#education_item[
+  Mustermensch-Universität Musterstadt
+][
+  B. Sc. Germanistik
+][
+  #resume_grade("Note: ", "1.8", none)
+][
+  Aug. 0000 - Aug. 0000
+]
 
 #education_item[
   University of Aaaaaaaa Aaaaaaa-Aaaaaaaaa
@@ -30,15 +41,6 @@
   Aug. 0000 - Aug. 0000
 ]
 
-#education_item[
-  University of Aaaaaaaa-Aaaaaaa
-][
-  B.S. in Computer Science
-][
-  #resume_gpa("4.00", "4.00")
-][
-  Aug. 0000 - Aug. 0000
-]
 
 #resume_section("Experience")
 

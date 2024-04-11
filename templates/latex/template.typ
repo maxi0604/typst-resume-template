@@ -108,13 +108,13 @@
   let contacts = {
     set box(height: 11pt)
     set text(size: 11pt)
-
     let linkedin_icon = box(image("assets/icons/linkedin.svg"))
     let github_icon = box(image("assets/icons/square-github.svg"))
+    let gitlab_icon = box(image("assets/icons/gitlab-logo-square.svg"))
     let email_icon = box(image("assets/icons/square-envelope-solid.svg"))
     let phone_icon = box(image("assets/icons/square-phone-solid.svg"))
     let separator = box(width: 5pt)
-    
+
     align(center)[
       #block[
         #align(horizon)[
@@ -123,17 +123,26 @@
           #separator
           #email_icon
           #box[#link("mailto:" + author.email)[#author.email]]
-          #separator
-          #github_icon
-          #box[#link("https://github.com/" + author.github)[#author.github]]
-          #separator
-          #linkedin_icon
-          #box[
-            #link("https://www.linkedin.com/in/" + author.linkedin)[#author.linkedin]
+          #if "github" in author [
+            #separator
+            #github_icon
+            #box[#link("https://github.com/" + author.github)[#author.github]]
+          ]
+          #if "gitlab" in author [
+            #separator
+            #gitlab_icon
+            #box[#link("https://gitlab.com/" + author.gitlab)[#author.gitlab]]
+          ]
+          #if "linkedin" in author [
+            #separator
+            #linkedin_icon
+            #box[
+              #link("https://www.linkedin.com/in/" + author.linkedin)[#author.linkedin]
+            ]
           ]
         ]
       ]
-    ] 
+    ]
   }
 
   name
@@ -190,9 +199,15 @@
   body
 }
 
+#let resume_grade(desc, numerator, denominator) = {
+  set text(size: 12pt, style: "italic", weight: "light")
+  text[
+    #desc #box[#strong[#numerator] #if denominator != none [\/ #denominator]
+  ]]
+}
+
 #let resume_gpa(numerator, denominator) = {
-  set text(size: 12pt, style: "normal", weight: "light")
-  text[Cumulative GPA: #box[#strong[#numerator] / #denominator]]
+  resume_grade("Cumulative GPA:", numerator, denominator)
 }
 
 // sections specific components

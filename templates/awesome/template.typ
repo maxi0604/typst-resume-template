@@ -109,6 +109,7 @@
     
     let linkedin_icon = box(image("assets/icons/linkedin.svg"))
     let github_icon = box(image("assets/icons/square-github.svg"))
+    let gitlab_icon = box(image("assets/icons/gitlab-logo-square.svg"))
     let email_icon = box(image("assets/icons/square-envelope-solid.svg"))
     let phone_icon = box(image("assets/icons/square-phone-solid.svg"))
     let separator = box(width: 5pt)
@@ -121,13 +122,22 @@
           #separator
           #email_icon
           #box[#link("mailto:" + author.email)[#author.email]]
-          #separator
-          #github_icon
-          #box[#link("https://github.com/" + author.github)[#author.github]]
-          #separator
-          #linkedin_icon
-          #box[
-            #link("https://www.linkedin.com/in/" + author.linkedin)[#author.linkedin]
+          #if "github" in author [
+            #separator
+            #github_icon
+            #box[#link("https://github.com/" + author.github)[#author.github]]
+          ]
+          #if "gitlab" in author [
+            #separator
+            #gitlab_icon
+            #box[#link("https://gitlab.com/" + author.gitlab)[#author.gitlab]]
+          ]
+          #if "linkedin" in author [
+            #separator
+            #linkedin_icon
+            #box[
+              #link("https://www.linkedin.com/in/" + author.linkedin)[#author.linkedin]
+            ]
           ]
         ]
       ]
@@ -191,11 +201,16 @@
   body
 }
 
-#let resume_gpa(numerator, denominator) = {
+#let resume_grade(desc, numerator, denominator) = {
   set text(size: 12pt, style: "italic", weight: "light")
-  text[Cumulative GPA: #box[#strong[#numerator] / #denominator]]
+  text[
+    #desc #box[#strong[#numerator] #if denominator != none [\/ #denominator]
+  ]]
 }
 
+#let resume_gpa(numerator, denominator) = {
+  resume_grade("Cumulative GPA:", numerator, denominator)
+}
 // sections specific components
 #let education_item(organization, degree, gpa, time_frame) = {
   set block(above: 0.7em, below: 0.7em)
