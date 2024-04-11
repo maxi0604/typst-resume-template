@@ -16,7 +16,7 @@
         "Aaaaaaaa Aaaaaaaa",
       )
   ),
-  date: today.display("[month repr:long] [day], [year]")
+  date: today.display("[year]-[month]-[day]")
 )
 
 #resume_section("Education")
