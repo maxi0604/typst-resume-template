@@ -1,5 +1,11 @@
 # Typst Resume Template
 
+## Improvements
+- Many contact options are now optional, e. g. you do not need to provide a LinkedIn or GitHub account to compile the document
+- `resume_gpa` has been superseded with a general `resume_grade` that allows specifying the description and makes the denominator optional. This is useful for people in countries that do not use GPA.
+- resume.typ accepts the template to use via the parameter `--input TEMPLATE=<template>` instead of hardcoding the path. The only change required to switch between templates is now the `TEMPLATE` variable in the `Justfile`
+- GitLab has been added as a contact option.
+
 A simple resume template for [typst.app](https://typst.app/).
 
 Aesthetic style inspired by the following project:
