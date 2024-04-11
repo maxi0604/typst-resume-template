@@ -1,4 +1,4 @@
-#import "templates/latex/template.typ": *
+#import "templates/" + sys.inputs.TEMPLATE + "/template.typ": *
 
 #let today = datetime.today()
 
